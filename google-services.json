@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "101257288231",
+    "firebase_url": "https://mensagemfacil-67156.firebaseio.com",
+    "project_id": "mensagemfacil-67156",
+    "storage_bucket": "mensagemfacil-67156.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101257288231:android:506d0e8f2e5c595e",
+        "android_client_info": {
+          "package_name": "com.mobservice.mensagemfacil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "101257288231-qrraj3rsvmlkun7pj44qqjvrv9a8kkdn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobservice.mensagemfacil",
+            "certificate_hash": "c1a0e4d8b755f0461f3015855c92a3d32aac02a8"
+          }
+        },
+        {
+          "client_id": "101257288231-5ph6aaeoofvmmkd36f8sh40p83lvngll.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBargHDXxlbu_Xfwix9WtcwCEItEqIvOZI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "101257288231-5ph6aaeoofvmmkd36f8sh40p83lvngll.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
