@@ -7,11 +7,19 @@ import java.util.ArrayList;
  */
 
 public class Messages {
+    private String key;
     private String text;
     private ArrayList<String> phones;
     private boolean sent;
 
     public Messages(String text, ArrayList<String> phones, boolean sent){
+        this.text = text;
+        this.phones = phones;
+        this.sent = sent;
+    }
+
+    public Messages(String key, String text, ArrayList<String> phones, boolean sent){
+        this.key = key;
         this.text = text;
         this.phones = phones;
         this.sent = sent;
@@ -44,6 +52,9 @@ public class Messages {
         this.sent = sent;
     }
 
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     @Override
     public String toString() {
@@ -65,5 +76,9 @@ public class Messages {
         }
 
         return ret.substring(0, ret.length()-2);
+    }
+
+    public String getKey() {
+        return key;
     }
 }

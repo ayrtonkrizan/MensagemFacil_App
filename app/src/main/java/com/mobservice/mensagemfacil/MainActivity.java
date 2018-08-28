@@ -15,10 +15,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -27,20 +29,25 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference("/toSend/channel1");
-
+    //private Query query = myRef.equalTo();
+    private boolean executing = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
+        myRef.addChildEventListener(new ChildEventListener() {
+            //myRef.addValueEventListener(new ValueEventListener() {
+            /*@Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<Messages> mList = new ArrayList<>();
+                boolean taken = false;
                 for (DataSnapshot unit : dataSnapshot.getChildren()){
                     Messages value = unit.getValue(Messages.class);
+                    value.setKey(unit.getKey());
                     mList.add(value);
+                    break;
                 }
                 Log.d("TAG", mList.toString());
 
@@ -48,14 +55,47 @@ public class MainActivity extends AppCompatActivity {
                     for (String phone : msg.getPhones()) {
                         sendSMS(phone, msg.getText());
                     }
+                    myRef.child(msg.getKey()).removeValue();
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
                 Log.w("FBError", "Failed to read value.", error.toException());
             }
+            */
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Messages msg = dataSnapshot.getValue(Messages.class);
+                msg.setKey(dataSnapshot.getKey());
+                Log.d("Added", msg.toString());
+
+                for (String phone : msg.getPhones()) {
+                    sendSMS(phone, msg.getText());
+                }
+                myRef.child(msg.getKey()).removeValue();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
         });
 
         Button sms =  (Button) findViewById(R.id.btsms);
